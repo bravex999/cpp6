@@ -20,6 +20,14 @@
 
 void ScalarConverter::convert(const std::string& literal)
 {
+	if (literal.empty())
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return;
+	}
 	char* endptr;
 	double val = std::strtod(literal.c_str(), &endptr);
 
