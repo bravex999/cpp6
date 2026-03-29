@@ -69,59 +69,59 @@ void ScalarConverter::convert(const std::string& literal)
 		std::cout << static_cast<int>(val) << std::endl;
 	}
 
-std::cout << "float: ";
-if (val != val)
-{
-	std::cout << "nanf" << std::endl;
-}
-else if (val > std::numeric_limits<float>::max() || val < -std::numeric_limits<float>::max())
-{
-	if (literal.find("inf") != std::string::npos)
+	std::cout << "float: ";
+	if (val != val)
+	{
+		std::cout << "nanf" << std::endl;
+	}
+	else if (val > std::numeric_limits<float>::max() || val < -std::numeric_limits<float>::max())
+	{
+		if (literal.find("inf") != std::string::npos)
+		{
+			if (val < 0)
+				std::cout << "-inff" << std::endl;
+			else if (literal[0] == '+')
+				std::cout << "+inff" << std::endl;
+			else
+				std::cout << "inff" << std::endl;
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
+	}
+	else if (val == std::floor(val))
+	{
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(val) << "f" << std::endl;
+	}
+	else
+	{
+		std::cout << static_cast<float>(val) << "f" << std::endl;
+	}
+
+	std::cout << "double: ";
+	if (val != val)
+	{
+		std::cout << "nan" << std::endl;
+	}
+	else if (val > std::numeric_limits<double>::max() || val < -std::numeric_limits<double>::max())
 	{
 		if (val < 0)
-			std::cout << "-inff" << std::endl;
+			std::cout << "-inf" << std::endl;
 		else if (literal[0] == '+')
-			std::cout << "+inff" << std::endl;
+			std::cout << "+inf" << std::endl;
 		else
-			std::cout << "inff" << std::endl;
+			std::cout << "inf" << std::endl;
+	}
+	else if (val == std::floor(val))
+	{
+		std::cout << std::fixed << std::setprecision(1) << val << std::endl;
 	}
 	else
 	{
-		std::cout << "impossible" << std::endl;
-	}
-}
-else if (val == std::floor(val))
-{
-	std::cout << std::fixed << std::setprecision(1) << static_cast<float>(val) << "f" << std::endl;
-}
-else
-{
-	std::cout << static_cast<float>(val) << "f" << std::endl;
-}
-
-std::cout << "double: ";
-if (val != val)
-{
-	std::cout << "nan" << std::endl;
-}
-else if (val > std::numeric_limits<double>::max() || val < -std::numeric_limits<double>::max())
-{
-	if (val < 0)
-		std::cout << "-inf" << std::endl;
-	else if (literal[0] == '+')
-		std::cout << "+inf" << std::endl;
-	else
-		std::cout << "inf" << std::endl;
-}
-else if (val == std::floor(val))
-{
-	std::cout << std::fixed << std::setprecision(1) << val << std::endl;
-}
-else
-{
-	std::cout << val << std::endl;
+		std::cout << val << std::endl;
+	}	
 }	
-	
 
 ScalarConverter::ScalarConverter()
 {
